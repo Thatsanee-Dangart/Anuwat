@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ind_techubru/screens/my_service.dart';
 
-class Home extends StatefulWidget {
+
+
+class Scan extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _ScanState createState() => _ScanState();
 }
 
-class _HomeState extends State<Home> {
+class _ScanState extends State<Scan> {
   // Explicit
   Color myColor = Colors.blue.shade900;
 
@@ -21,11 +23,13 @@ class _HomeState extends State<Home> {
 
   Widget showButton() {
     return Container(
-      margin: EdgeInsets.only(left: 50.0, right: 50.0),
+      margin: EdgeInsets.only(left: 5.0, right: 5.0),
       child: Row(
         children: <Widget>[
           signInButton(),
           mySizebox(),
+          signIngButton(),
+         
         ],
       ),
     );
@@ -36,7 +40,7 @@ class _HomeState extends State<Home> {
       child: RaisedButton(
         color: myColor,
         child: Text(
-          'Sign In',
+          'ScanQR-Code',
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
@@ -50,37 +54,25 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget usernameText() {
-    return TextFormField(
-      decoration: InputDecoration(
-        icon: Icon(
-          Icons.account_circle,
-          size: 36.0,
-          color: myColor,
+   Widget signIngButton() {
+    return Expanded(
+      child: RaisedButton(
+        color: myColor,
+        child: Text(
+          'Student Code',
+          style: TextStyle(color: Colors.white),
         ),
-        labelText: 'Username :',
-        labelStyle: TextStyle(color: myColor),
+        onPressed: () {
+          print('You Click SingUp');
+
+          MaterialPageRoute materialPageRoute =
+              MaterialPageRoute(builder: (BuildContext context) => MyService());
+          Navigator.of(context).push(materialPageRoute);
+        },
       ),
-      onSaved: (String value) {},
     );
   }
-
-  Widget passwordText() {
-    return TextFormField(
-      obscureText: true,
-      decoration: InputDecoration(
-        icon: Icon(
-          Icons.lock,
-          size: 36.0,
-          color: myColor,
-        ),
-        labelText: 'Password :',
-        labelStyle: TextStyle(color: myColor),
-      ),
-      onSaved: (String value) {},
-    );
-  }
-
+  
   Widget showAuthen() {
     return Container(
       decoration: BoxDecoration(
@@ -99,8 +91,6 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               showLogo(),
               showName(),
-              usernameText(),
-              passwordText(),
               showButton(),
             ],
           ),
@@ -133,6 +123,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:ind_techubru/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:ind_techubru/screens/scan.dart';
 
 class MyService extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _MyServiceState extends State<MyService> {
       width: 80.0,
       height: 80.0,
       child: Image.asset(
-        ('images/city.png'),
+        ('images/smo.png'),
       ),
     );
   }
@@ -65,11 +66,34 @@ class _MyServiceState extends State<MyService> {
         .pushAndRemoveUntil(materialPageRoute, (Route<dynamic> route) => false);
   }
 
+  Widget signScanMenu() {
+    return ListTile(
+      leading: Icon(
+        Icons.cached,
+        size: mySizeIcon,
+      ),
+      title: Text(
+        'Sign Scan',
+        style: TextStyle(fontSize: h2),
+      ),
+      onTap: () {
+        processSignScan();
+      },
+    );
+  }
+
+  Future<void> processSignScan() async {
+    MaterialPageRoute materialPageRoute =
+        MaterialPageRoute(builder: (BuildContext context) => Scan());
+    Navigator.of(context)
+        .pushAndRemoveUntil(materialPageRoute, (Route<dynamic> route) => false);
+  }
+
   Widget myHeadDrawer() {
     return DrawerHeader(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('images/wa.jpg'), fit: BoxFit.cover),
+            image: AssetImage('images/it.jpg'), fit: BoxFit.cover),
       ),
       child: Column(
         children: <Widget>[
@@ -87,6 +111,7 @@ class _MyServiceState extends State<MyService> {
         children: <Widget>[
           myHeadDrawer(),
           signOutMenu(),
+          signScanMenu(),
         ],
       ),
     );
@@ -96,7 +121,7 @@ class _MyServiceState extends State<MyService> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Service'),
+        title: Text('Student Activities'),
       ),
       drawer: myDrewerMenu(),
     );
