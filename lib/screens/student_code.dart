@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ind_techubru/screens/my_service.dart';
-import 'package:ind_techubru/screens/student_code.dart';
-
-
-
-class Scan extends StatefulWidget {
+class StudentCode extends StatefulWidget {
   @override
-  _ScanState createState() => _ScanState();
+  _StudentCodeState createState() => _StudentCodeState();
 }
 
-class _ScanState extends State<Scan> {
-  // Explicit
+class _StudentCodeState extends State<StudentCode> {
+   // Explicit
   Color myColor = Colors.blue.shade900;
 
   // Method
@@ -21,29 +17,14 @@ class _ScanState extends State<Scan> {
       height: 16.0,
     );
   }
-  Widget showTitle(String title) {
-    return ListTile(
-      leading: Icon(
-        Icons.add_alert,
-        color: Colors.red,
-        size: 48.0,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.red),
-      ),
-    );
-  }
 
   Widget showButton() {
     return Container(
-      margin: EdgeInsets.only(left: 5.0, right: 5.0),
+      margin: EdgeInsets.only(left: 50.0, right: 50.0),
       child: Row(
         children: <Widget>[
           signInButton(),
           mySizebox(),
-          signIngButton(),
-         
         ],
       ),
     );
@@ -54,7 +35,7 @@ class _ScanState extends State<Scan> {
       child: RaisedButton(
         color: myColor,
         child: Text(
-          'ScanQR-Code',
+          'Scan',
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
@@ -68,25 +49,22 @@ class _ScanState extends State<Scan> {
     );
   }
 
-   Widget signIngButton() {
-    return Expanded(
-      child: RaisedButton(
-        color: myColor,
-        child: Text(
-          'Student Code',
-          style: TextStyle(color: Colors.white),
+  Widget passwordText() {
+    return TextFormField(
+      obscureText: true,
+      decoration: InputDecoration(
+        icon: Icon(
+          Icons.lock,
+          size: 36.0,
+          color: myColor,
         ),
-        onPressed: () {
-          print('You Click SingUp');
-
-          MaterialPageRoute materialPageRoute =
-              MaterialPageRoute(builder: (BuildContext context) => StudentCode());
-          Navigator.of(context).push(materialPageRoute);
-        },
+        labelText: 'Student Code :',
+        labelStyle: TextStyle(color: myColor),
       ),
+      onSaved: (String value) {},
     );
   }
-  
+
   Widget showAuthen() {
     return Container(
       decoration: BoxDecoration(
@@ -105,8 +83,8 @@ class _ScanState extends State<Scan> {
             children: <Widget>[
               showLogo(),
               showName(),
+              passwordText(),
               showButton(),
-              
             ],
           ),
         ),
@@ -152,3 +130,4 @@ class _ScanState extends State<Scan> {
     );
   }
 }
+
